@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
-
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{category:slug}', [HomeController::class, 'category'])->name('category');
 Route::get('/post/{post:slug}', [HomeController::class, 'post'])->name('post');
