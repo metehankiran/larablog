@@ -21,7 +21,6 @@ class CreatePostsTable extends Migration
             $table->text('keywords')->nullable();
             $table->integer('category_id');
             $table->integer('author_id');
-            $table->integer('views');
             $table->text('content');
             $table->text('image')->nullable();
             $table->timestamps();

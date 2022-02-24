@@ -22,7 +22,7 @@
                 <div class="col-md-8 align-self-center">
                     <div class="post-content">
                         <div class="entry-meta meta-0 font-small mb-10">
-                            <a href="category.html"><span class="post-cat text-primary">{{ $article->category->titl }}</span></a>
+                            <a href="category.html"><span class="post-cat text-primary">{{ $article->category->title }}</span></a>
                         </div>
                         <h5 class="post-title font-weight-900 mb-20">
                             <a href="single.html">{{ $article->title }}</a>
@@ -31,7 +31,7 @@
                         <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
                             <span class="post-on">{{ $article->updated_at->diffForHumans() }}</span>
                             <span class="time-reading has-dot">3 mins read</span>
-                            <span class="post-by has-dot">{{ $article->views }} views</span>
+                            <span class="post-by has-dot">{{ $article->views() }} views</span>
                         </div>
                     </div>
                 </div>

@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Visitor;
 
 class Post extends Model
 {
     use HasFactory;
     protected $guard = [];
     protected $fillable = [
-        'title', 'slug', 'category_id', 'author_id', 'views', 'content', 'keywords',
+        'title', 'slug', 'category_id', 'author_id', 'content', 'keywords',
     ];
 
     public function category()
@@ -26,5 +27,9 @@ class Post extends Model
         return $this->belongsTo(User::class, 'author_id', 'id');
     }
 
+    public function views()
+    {
+        return $this->hasMany(Visitor::class)->count();
+    }
 
 }

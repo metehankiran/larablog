@@ -40,7 +40,7 @@
                                         </h3>
                                         <div class="entry-meta meta-1 font-small text-white mt-10 pr-5 pl-5">
                                             <span class="post-on">{{ $post->updated_at->diffForHumans() }}</span>
-                                            <span class="hit-count has-dot">{{ $post->views }} Views</span>
+                                            <span class="hit-count has-dot">{{ $post->views() }} Views</span>
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
                                 <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
                                     <span class="post-on">{{ $post->updated_at->diffForHumans() }}</span>
                                     <span class="time-reading has-dot">? mins read</span>
-                                    <span class="post-by has-dot">{{ $post->views }} views</span>
+                                    <span class="post-by has-dot">{{ $post->views() }} views</span>
                                 </div>
                             </div>
                         </div>

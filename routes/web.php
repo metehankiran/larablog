@@ -6,6 +6,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\CategoryController;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Http\Request;
+
+use App\Models\Visitor;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,10 +19,9 @@ use Illuminate\Support\Facades\Artisan;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{category:slug}', [HomeController::class, 'category'])->name('category');
-Route::get('/post/{post:slug}', [HomeController::class, 'post'])->name('post');
+Route::get('/post/{post:slug}', [HomeController::class, 'post'])->name('post')->middleware('visitor');
 Route::get('/author/{user:slug}', [HomeController::class, 'author'])->name('author');
 
 Route::prefix('admin')->middleware('auth')->group(function () {

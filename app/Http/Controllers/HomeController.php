@@ -9,6 +9,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Visitor;
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**
@@ -18,14 +20,12 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
-
         $parentCategories = Category::where('parent_id',0)->get();
         $latestPosts = Post::orderBy('updated_at', 'desc')->paginate(4);
-        $mostPopular = Post::orderBy('views', 'desc')->latest()->take(4)->get();
+        $viewCount = Visitor::select('post_id', DB::raw('count(*) as views'))->groupBy('post_id')->get();
         view()->share('parentCategories', $parentCategories);   
         view()->share('latestPosts', $latestPosts);   
-        view()->share('mostPopular', $mostPopular);   
+        view()->share('viewCount', $viewCount);   
     }
     
 
