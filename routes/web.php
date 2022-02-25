@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{category:slug}', [HomeController::class, 'category'])->name('category');
 Route::get('/post/{post:slug}', [HomeController::class, 'post'])->name('post')->middleware('visitor');
 Route::get('/author/{user:slug}', [HomeController::class, 'author'])->name('author');
+
+Route::resource('comments', CommentController::class);
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::view('/', 'backend.home')->name('dashboard');

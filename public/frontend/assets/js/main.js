@@ -395,16 +395,6 @@
     /* WOW active */
     new WOW().init();
 
-    //Vô hiệu hóa cắt, sao chép và dán
-    $("body").bind("cut copy paste", function (e) {
-        e.preventDefault();
-    });
-   
-    //Vô hiệu hóa chuột phải
-    $("body").on("contextmenu",function(e){
-        return false;
-    });
-
     //Load functions
     $(document).ready(function() {
         openSearchForm();

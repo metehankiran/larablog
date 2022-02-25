@@ -23,9 +23,11 @@ class HomeController extends Controller
         $parentCategories = Category::where('parent_id',0)->get();
         $latestPosts = Post::orderBy('updated_at', 'desc')->paginate(4);
         $viewCount = Visitor::select('post_id', DB::raw('count(*) as views'))->groupBy('post_id')->get();
+        $randomCategories = Category::inRandomOrder()->get();
         view()->share('parentCategories', $parentCategories);   
         view()->share('latestPosts', $latestPosts);   
         view()->share('viewCount', $viewCount);   
+        view()->share('randomCategories', $randomCategories);   
     }
     
 
@@ -55,4 +57,5 @@ class HomeController extends Controller
         $posts = $user->posts;
         return view('frontend.page.author', ['posts'=>$posts, 'author' => $user]);
     }
+
 }

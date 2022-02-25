@@ -64,7 +64,6 @@ class PostController extends Controller
         $post->category_id = $request->category_id;
         $post->keywords = $request->keywords;
         $post->image = $request->file('image')->store('public/images');
-        $post->views = 0;
         $post->save();
 
         return redirect()->route('posts.index')->with('message','Post added successfully');
@@ -114,7 +113,6 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->category_id = $request->category_id;
         $post->keywords = $request->keywords;
-        $post->views = 0;
         if(isset($request->image)){
             $post->image = $request->file('image')->store('public/images');
         }

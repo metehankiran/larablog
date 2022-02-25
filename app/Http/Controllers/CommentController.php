@@ -1,22 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-
-use App\Models\Category;
-
-class CategoryController extends Controller
+use App\Models\Comment;
+class CommentController extends Controller
 {
-
-    public function __construct()
-    {   
-        $categories = Category::orderBy('parent_id')->get();
-        $allCategories = Category::pluck('title','id')->all();
-        view()->share(['categories'=>$categories, 'allCategories'=>$allCategories]);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('backend.category.category');
+        //
     }
 
     /**
@@ -45,17 +34,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'title' => 'required',
-            'parent_id' => 'required'
+        $input = $request->all();
+        $request->validate([
+            'body'=>'required',
         ]);
-        $category = new Category;
-        $category->title = $request->title;
-        $category->slug = Str::slug($request->title,'-');
-        $category->parent_id = $request->parent_id;
-        $category->save();
 
-        return redirect()->back()->with('message','Category added successfully.');
+        if(auth()->user()){
+            $input['user_id'] = auth()->user()->id;
+        }
+        Comment::create($input);
+        return back();
+
     }
 
     /**

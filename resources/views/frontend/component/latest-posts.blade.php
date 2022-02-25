@@ -1,4 +1,4 @@
-<div class="post-module-3">
+<div class="post-module-3" id="latest-posts">
     <div class="widget-header-1 position-relative mb-30">
         <h5 class="mt-5 mb-30">Latest posts</h5>
     </div>
@@ -26,7 +26,6 @@
                         </div>
                         <h5 class="post-title font-weight-900 mb-20">
                             <a href="single.html">{{ $article->title }}</a>
-                            <span class="post-format-icon"><i class="elegant-icon icon_star_alt"></i></span>
                         </h5>
                         <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
                             <span class="post-on">{{ $article->updated_at->diffForHumans() }}</span>
@@ -40,4 +39,4 @@
         @endforeach
     </div>
 </div>
-{{ $latestPosts->links('vendor.pagination.custom') }}
+{{ $latestPosts->links('vendor.pagination.bootstrap') }}

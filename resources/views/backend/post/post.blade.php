@@ -30,7 +30,7 @@
                         <td><a href="{{ route('posts.show',$post->id) }}">{{ $post->title }}</a></td>
                         <td>{{ $post->category->title }}</td>
                         <td>{{ $post->author_id }}</td>
-                        <td>{{ $post->views }}</td>
+                        <td>{{ $post->views() }}</td>
                         <td>{{ $post->updated_at }}</td>
                         <td>
                             <a href="{{ route('posts.edit',$post->id) }}">Edit</a>
