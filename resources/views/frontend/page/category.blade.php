@@ -86,7 +86,7 @@
                 <div class="col-12">
                     <div class="pagination-area mb-30 wow fadeInUp animated">
                         <nav aria-label="Page navigation example">
-                            {{ $posts->links('vendor.pagination.custom') }}
+                            {{ $posts->links('vendor.pagination.bootstrap') }}
                         </nav>
                     </div>
                 </div>

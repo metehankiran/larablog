@@ -20,6 +20,12 @@ class PostController extends Controller
         $allCategories = Category::pluck('title','id')->all();
         view()->share(['categories'=>$categories, 'allCategories'=>$allCategories]);
     }
+
+    public function featured(Request $request, $id)
+    {
+        Post::where('id',$id)->update(['featured' => $request->status ? false : true]);
+        return response()->json(Post::find($id)->featured, 200);
+    }
     /**
      * Display a listing of the resource.
      *

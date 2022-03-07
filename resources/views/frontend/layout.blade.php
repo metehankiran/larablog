@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>@yield('title', 'Personal Blog')</title>
+    <title>@yield('title', $setting->title)</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets') }}/imgs/theme/favicon.png">
+    <link rel="icon" type="image/x-icon" href="{{ asset('frontend/assets').$setting->icon }}">
     <!-- NewsBoard CSS  -->
     <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/style.css">
     <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/widgets.css">

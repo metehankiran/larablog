@@ -2,7 +2,7 @@
 @extends('frontend.layout')
 @section('body')
 <main>       
-    @include('frontend.component.slider')      
+    {{-- @include('frontend.component.slider')       --}}
     <!-- End feature -->
     @include('frontend.component.featured-posts')
     @php
@@ -59,10 +59,12 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="widget-area">
-                        @include('frontend.component.about')
-                        @include('frontend.component.most-popular')
-                        @include('frontend.component.last-comments')
-                        @include('frontend.component.instagram')
+                        @php
+                            if($setting->user_about) @include('frontend.component.about');
+                            if($setting->most_popular) @include('frontend.component.most-popular');
+                            if($setting->last_comments) @include('frontend.component.last-comments');
+                            if($setting->instagram) @include('frontend.component.instagram');
+                        @endphp
                     </div>
                 </div>
             </div>

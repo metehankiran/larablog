@@ -30,6 +30,7 @@ Route::resource('comments', CommentController::class);
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::view('/', 'backend.home')->name('dashboard');
     Route::resource('posts', PostController::class);
+    Route::post('post/featured/{id}', [PostController::class, 'featured'])->name('posts.featured');
     Route::resource('categories', CategoryController::class);    
 });
 

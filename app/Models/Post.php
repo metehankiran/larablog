@@ -31,7 +31,6 @@ class Post extends Model
     {
         return $this->hasMany(Visitor::class)->count();
     }
-
     public function comments()
     {
         return $this->hasMany(Comment::class);

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Category;
+use App\Models\Setting;
 use App\Models\User;
 class DatabaseSeeder extends Seeder
 {
@@ -24,5 +25,18 @@ class DatabaseSeeder extends Seeder
         Category::create(['title' => 'PHP','parent_id' => 1, 'slug' => 'php']);
         Category::create(['title' => 'Java','parent_id' => 1, 'slug' => 'java']);
         Category::create(['title' => 'Go','parent_id' => 1, 'slug' => 'go-lang']);
+    
+        Setting::create([
+            'title' => 'Metehan Kıran - Kişisel Blog',
+            'tags' => 'teknoloji,yazılım,php,laravel,web development',
+            'icon' => '/imgs/website.png',
+            'logo' => '/imgs/theme/logo.png',
+            'address' => 'Bataklığın dibi...',
+            'newsletter' => true,
+            'meta_desc' => 'sdkfaskdfkasfkasdfkaskdfaskdfak',
+            'footer_about'  => 'footer about',
+            'user_about' => true,
+            'user_id' => 1
+        ]);
     }
 }

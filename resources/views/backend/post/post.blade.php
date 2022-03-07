@@ -1,4 +1,49 @@
 @extends('layouts.app')
+@section('script')
+    <script>
+
+        function featured(id){
+            var status = $('input[type=checkbox]#featured-checkbox-id-'+id).val()
+            $.ajax({
+                type: 'post',
+                url: '/admin/post/featured/'+id,
+                data: $('#featured-form-'+id).serialize()+"&status="+status,
+                success:function(data){
+                    toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                    }
+                   if(data == true){ 
+                        toastr.success('Post set featured.')
+                        $('input[type=checkbox]#featured-checkbox-id-'+id).val(1)
+                    }
+                   else if(data == false){
+                        toastr.success('Post set not featured.')
+                        $('input[type=checkbox]#featured-checkbox-id-'+id).val(1)
+                   }
+                   else{
+                        toastr.error('Undefined error.')
+                        $('input[type=checkbox]#featured-checkbox-id-'+id).val()
+                   }
+                },
+                
+            })
+    }
+    </script>
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-md-center">
@@ -19,6 +64,7 @@
                         <th scope="col">Category</th>
                         <th scope="col">Author</th>
                         <th scope="col">Views</th>
+                        <th scope="col">Featured</th>
                         <th scope="col">Last Update</th>
                         <th>Actions</th>
                     </tr>
@@ -31,6 +77,14 @@
                         <td>{{ $post->category->title }}</td>
                         <td>{{ $post->author_id }}</td>
                         <td>{{ $post->views() }}</td>
+                        <td>
+                            <form action="{{ route('posts.featured',$post->id) }}" method="post" id="featured-form-{{ $post->id }}">
+                                @csrf
+                                <div class="form-check text-center">
+                                    <input class="form-check-input" id="featured-checkbox-id-{{ $post->id }}" type="checkbox" name="status" value="{{ $post->featured }}" @checked($post->featured == true) onclick="featured({{ $post->id }})">
+                                  </div>
+                            </form>
+                        </td>
                         <td>{{ $post->updated_at }}</td>
                         <td>
                             <a href="{{ route('posts.edit',$post->id) }}">Edit</a>

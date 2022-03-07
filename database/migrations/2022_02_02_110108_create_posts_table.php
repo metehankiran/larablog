@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->text('keywords')->nullable();
             $table->integer('category_id');
             $table->integer('author_id');
+            $table->boolean('featured')->default(0);
             $table->text('content');
             $table->text('image')->nullable();
             $table->timestamps();

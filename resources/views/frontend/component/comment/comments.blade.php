@@ -70,7 +70,7 @@
     <form class="form-contact comment_form" action="{{ route('comments.store') }}" method="post" id="commentForm">
         @csrf
         <input type="hidden" name="post_id" value="{{ $post->id }}">
-        <input type="hidden" name="parent_id" value="">
+        <input type="hidden" name="parent_id" value="0">
         <div class="row">
             <div class="col-12">
                 <div class="form-group">

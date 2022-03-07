@@ -7,9 +7,11 @@ use Illuminate\Support\Collection;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Visitor;
+use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
@@ -20,14 +22,19 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        $comments = Comment::get();
         $parentCategories = Category::where('parent_id',0)->get();
         $latestPosts = Post::orderBy('updated_at', 'desc')->paginate(4);
         $viewCount = Visitor::select('post_id', DB::raw('count(*) as views'))->groupBy('post_id')->get();
         $randomCategories = Category::inRandomOrder()->get();
+        $posts = Post::all();
+        view()->share('posts', $posts);   
         view()->share('parentCategories', $parentCategories);   
         view()->share('latestPosts', $latestPosts);   
         view()->share('viewCount', $viewCount);   
         view()->share('randomCategories', $randomCategories);   
+        view()->share('comments', $comments);   
+        view()->share('setting', Setting::first());
     }
     
 

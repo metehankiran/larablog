@@ -100,6 +100,7 @@ namespace App\Models{
  * @property string|null $keywords
  * @property int $category_id
  * @property int $author_id
+ * @property int $featured
  * @property string $content
  * @property string|null $image
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -117,6 +118,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereFeatured($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereKeywords($value)
@@ -125,6 +127,59 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereUpdatedAt($value)
  */
 	class Post extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Setting
+ *
+ * @property string $title
+ * @property string $tags
+ * @property string $icon
+ * @property string $logo
+ * @property string $address
+ * @property int $newsletter
+ * @property string $meta_desc
+ * @property string $footer_about
+ * @property int $user_about
+ * @property int|null $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereFooterAbout($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereIcon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereLogo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereMetaDesc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereNewsletter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereTags($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereUserAbout($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereUserId($value)
+ */
+	class Setting extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\TagCloud
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|TagCloud newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TagCloud newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TagCloud query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TagCloud whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TagCloud whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TagCloud whereUpdatedAt($value)
+ */
+	class TagCloud extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -138,6 +193,7 @@ namespace App\Models{
  * @property string $image
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
+ * @property string|null $about
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -151,6 +207,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAbout($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
@@ -163,6 +220,33 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
 	class User extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\UserSocials
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string|null $fb
+ * @property string|null $tw
+ * @property string|null $pt
+ * @property string|null $ig
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocials newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocials newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocials query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocials whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocials whereFb($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocials whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocials whereIg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocials wherePt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocials whereTw($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocials whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserSocials whereUserId($value)
+ */
+	class UserSocials extends \Eloquent {}
 }
 
 namespace App\Models{

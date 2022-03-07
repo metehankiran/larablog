@@ -8,7 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Dashboard') }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('frontend/assets') }}/imgs/website.png">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @toastr_css
 </head>
 
 <body>
@@ -99,5 +101,8 @@
         </main>
     </div>
 </body>
-
+@jquery
+@toastr_js
+@toastr_render
+@yield('script')
 </html>
