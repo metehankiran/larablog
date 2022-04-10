@@ -45,3 +45,7 @@ Route::get('reset', function() {
     Artisan::call('cache:clear');
     return redirect()->route('home');
 });
+Route::get('seed', function() {
+    Artisan::call('db:seed');
+    return redirect()->route('home');
+});
