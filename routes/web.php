@@ -9,7 +9,6 @@ use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Http\Request;
 
-use App\Models\Visitor;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

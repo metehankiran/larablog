@@ -9,7 +9,7 @@
                 <div class="col-md-4">
                     <div class="post-thumb position-relative border-radius-5">
                         <div class="img-hover-slide border-radius-5 position-relative" style="background-image: url({{ Storage::url($article->image) }})">
-                            <a class="img-link" href="single.html"></a>
+                            <a class="img-link" href="{{ route('post',$article) }}"></a>
                         </div>
                         <ul class="social-share">
                             <li><a href="#"><i class="elegant-icon social_share"></i></a></li>
@@ -22,10 +22,10 @@
                 <div class="col-md-8 align-self-center">
                     <div class="post-content">
                         <div class="entry-meta meta-0 font-small mb-10">
-                            <a href="category.html"><span class="post-cat text-primary">{{ $article->category->title }}</span></a>
+                            <a href="{{ route('category',$article->category) }}"><span class="post-cat text-primary">{{ $article->category->title }}</span></a>
                         </div>
                         <h5 class="post-title font-weight-900 mb-20">
-                            <a href="single.html">{{ $article->title }}</a>
+                            <a href="{{ route('post',$article) }}">{{ $article->title }}</a>
                         </h5>
                         <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
                             <span class="post-on">{{ $article->updated_at->diffForHumans() }}</span>

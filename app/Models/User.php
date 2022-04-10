@@ -48,5 +48,8 @@ class User extends Authenticatable
         return $this->hasMany(Post::class, 'author_id', 'id')->latest();
     }
     
-    
+    public function posts_paginate($count=8)
+    {
+        return $this->hasMany(Post::class, 'author_id', 'id')->paginate($count);
+    }
 }

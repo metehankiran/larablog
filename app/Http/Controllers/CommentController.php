@@ -55,7 +55,8 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        //
+        $comment = Comment::find($id);
+        return redirect()->route('post',$comment->post->slug).'#comment-'.$comment->id;
     }
 
     /**

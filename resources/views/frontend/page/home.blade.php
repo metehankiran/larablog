@@ -3,7 +3,6 @@
 @section('body')
 <main>       
     {{-- @include('frontend.component.slider')       --}}
-    <!-- End feature -->
     @include('frontend.component.featured-posts')
     @php
         $category = $randomCategories->take(1)->first();
@@ -14,7 +13,7 @@
                 <div class="col-lg-8">
                     <div class="post-module-2">
                         <div class="widget-header-1 position-relative mb-30  wow fadeInUp animated">
-                            <h5 class="mt-5 mb-30">{{ $category->title }}</h5>
+                            <h5 class="mt-5 mb-30"><a class="link" href="{{ route('category',$category) }}">{{ $category->title }}</a></h5>
                         </div>
                         <div class="loop-list loop-list-style-1">
                             <div class="row">
@@ -25,23 +24,19 @@
                                             <a class="img-link" href="{{ route('post', $post) }}"></a>
                                             <ul class="social-share">
                                                 <li><a href="#"><i class="elegant-icon social_share"></i></a></li>
-                                                <li><a class="fb" href="#" title="Share on Facebook" target="_blank"><i class="elegant-icon social_facebook"></i></a></li>
+                                                <li><a class="fb" href="https://twitter.com/intent/tweet?text=Hello%20world" title="Share on Facebook" target="_blank"><i class="elegant-icon social_facebook"></i></a></li>
                                                 <li><a class="tw" href="#" target="_blank" title="Tweet now"><i class="elegant-icon social_twitter"></i></a></li>
                                                 <li><a class="pt" href="#" target="_blank" title="Pin it"><i class="elegant-icon social_pinterest"></i></a></li>
                                             </ul>
                                         </div>
                                         <div class="post-content p-30">
-                                            <div class="entry-meta meta-0 font-small mb-10">
-                                                <a href="category.html"><span class="post-cat text-info">Artists</span></a>
-                                                <a href="category.html"><span class="post-cat text-success">Film</span></a>
+                                            <div class="entry-meta meta-0 font-small">
+                                                <a href="{{ route('category',$post->category) }}"><span class="post-cat text-info">{{ $post->category->title }}</span></a>
                                             </div>
-                                            <div class="d-flex post-card-content">
-                                                <h5 class="post-title mb-20 font-weight-900">
+                                            <div class="d-flex post-card-content" style="min-height: 50px">
+                                                <h5 class="post-title font-weight-900 mt-2 mb-2">
                                                     <a href="{{ route('post', $post) }}">{{ $post->title }}</a>
                                                 </h5>
-                                                <div class="post-excerpt mb-25 font-small text-muted">
-                                                    <p>{{ $post->description }}</p>
-                                                </div>
                                                 <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
                                                     <span class="post-on">{{ $post->created_at->diffForHumans() }}</span>
                                                     <span class="time-reading has-dot">12 mins read</span>
@@ -59,12 +54,10 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="widget-area">
-                        @php
-                            if($setting->user_about) @include('frontend.component.about');
-                            if($setting->most_popular) @include('frontend.component.most-popular');
-                            if($setting->last_comments) @include('frontend.component.last-comments');
-                            if($setting->instagram) @include('frontend.component.instagram');
-                        @endphp
+                            @if($setting->user_about) @include('frontend.component.about')@endif
+                            @if($setting->most_popular) @include('frontend.component.most-popular')@endif
+                            @if($setting->last_comments) @include('frontend.component.last-comments')@endif
+                            @if($setting->instagram) @include('frontend.component.instagram')@endif
                     </div>
                 </div>
             </div>

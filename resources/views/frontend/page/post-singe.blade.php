@@ -12,8 +12,7 @@
             <div class="col-md-6 align-self-center">
                 <div class="post-content">
                     <div class="entry-meta meta-0 mb-15 font-small">
-                        <a href="{{ route('category',$post->category->slug) }}"><span class="post-cat position-relative text-info">{{ $post->category->title }}</span></a>
-                        {{-- <a href="category.html"><span class="post-cat position-relative text-success">Food</span></a> --}}
+                        <a href="{{ route('category',$post->category) }}"><span class="post-cat position-relative text-info">{{ $post->category->title }}</span></a>
                     </div>
                     <h1 class="entry-title mb-30 font-weight-900">
                         {{ $post->title }}
@@ -23,8 +22,8 @@
                     </p>
                     <div class="entry-meta align-items-center meta-2 font-small color-muted">
                         <p class="mb-5">
-                            <a class="author-avatar" href="{{ route('author', $post->author->slug) }}"><img class="img-circle" src="{{ Storage::url($post->author->image) }}" alt=""></a>
-                            By <a href="{{ route('author', $post->author->slug) }}"><span class="author-name font-weight-bold">{{ $post->author->name }}</span></a>
+                            <a class="author-avatar" href="{{ route('author', $post->author) }}"><img class="img-circle" src="{{ Storage::url($post->author->image) }}" alt=""></a>
+                            By <a href="{{ route('author', $post->author) }}"><span class="author-name font-weight-bold">{{ $post->author->name }}</span></a>
                         </p>
                         <span class="mr-10"> {{ $post->updated_at->diffForHumans() }}</span>
                         <span class="has-dot"> 8 mins read</span>
@@ -37,6 +36,9 @@
     <!--end single header-->
     <!--figure-->
     <article class="entry-wraper mb-50">
+        <div class="entry-main-content dropcap wow fadeIn animated">
+            {!! $post->content !!}
+        </div>
         @if ($post->keywords != "")
         <div class="entry-bottom mt-50 mb-30 wow fadeIn animated">
             <div class="tags">
@@ -49,7 +51,7 @@
         @endif
         <div class="single-social-share clearfix wow fadeIn animated">
             <div class="entry-meta meta-1 font-small color-grey float-left mt-10">
-                <span class="hit-count mr-15"><i class="elegant-icon icon_comment_alt mr-5"></i>182 comments</span>
+                <span class="hit-count mr-15"><i class="elegant-icon icon_comment_alt mr-5"></i>{{ $post->comments->count() }} comments</span>
                 <span class="hit-count mr-15"><i class="elegant-icon icon_search mr-5"></i>{{ $post->views() }} views</span>
             </div>
             <ul class="header-social-network d-inline-block list-inline float-md-right mt-md-0 mt-4">
@@ -62,14 +64,14 @@
         <!--author box-->
         <div class="author-bio p-30 mt-50 border-radius-10 bg-white wow fadeIn animated">
             <div class="author-image mb-30">
-                <a href="author.html"><img src="{{ Storage::url($post->author->image) }}" alt="" class="avatar"></a>
+                <a href="{{ route('author',$post->author) }}"><img src="{{ Storage::url($post->author->image) }}" alt="" class="avatar"></a>
             </div>
             <div class="author-info">
-                <h4 class="font-weight-bold mb-20"><span class="vcard author"><span class="fn"><a href="{{ route('author', $post->author->slug) }}" title="Posted by {{ $post->author->name }}" rel="author">{{ $post->author->name }}</a></span></span>
+                <h4 class="font-weight-bold mb-20"><span class="vcard author"><span class="fn"><a href="{{ route('author', $post->author) }}" title="Posted by {{ $post->author->name }}" rel="author">{{ $post->author->name }}</a></span></span>
                 </h4>
                 <h5 class="text-muted">About author</h5>
-                <div class="author-description text-muted">You should write because you love the shape of stories and sentences and the creation of different words on a page. </div>
-                <a href="{{ route('author', $post->author->slug) }}" class="author-bio-link mb-md-0 mb-3">View all posts ({{ $post->author->posts->count() }})</a>
+                <div class="author-description text-muted">{{ $post->author->about }}</div>
+                <a href="{{ route('author', $post->author) }}" class="author-bio-link mb-md-0 mb-3">View all posts ({{ $post->author->posts->count() }})</a>
                 <div class="author-social">
                     <ul class="author-social-icons">
                         <li class="author-social-link-facebook"><a href="#" target="_blank"><i class="ti-facebook"></i></a></li>

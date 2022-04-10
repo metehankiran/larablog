@@ -50,6 +50,7 @@ namespace App\Models{
  * @property string $body
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Post|null $post
  * @property-read \Illuminate\Database\Eloquent\Collection|Comment[] $replies
  * @property-read int|null $replies_count
  * @property-read \App\Models\User|null $user
@@ -133,6 +134,7 @@ namespace App\Models{
 /**
  * App\Models\Setting
  *
+ * @property int $id
  * @property string $title
  * @property string $tags
  * @property string $icon
@@ -142,6 +144,9 @@ namespace App\Models{
  * @property string $meta_desc
  * @property string $footer_about
  * @property int $user_about
+ * @property int $last_comments
+ * @property int $instagram
+ * @property int $most_popular
  * @property int|null $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -153,8 +158,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereFooterAbout($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereIcon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereInstagram($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereLastComments($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereLogo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereMetaDesc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereMostPopular($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereNewsletter($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereTags($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereTitle($value)
@@ -163,6 +172,33 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereUserId($value)
  */
 	class Setting extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Social
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $title
+ * @property string $class_name
+ * @property int|null $user_id
+ * @property int $website
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Social newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Social newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Social query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Social whereClassName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Social whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Social whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Social whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Social whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Social whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Social whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Social whereWebsite($value)
+ */
+	class Social extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -220,33 +256,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
 	class User extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\UserSocials
- *
- * @property int $id
- * @property int $user_id
- * @property string|null $fb
- * @property string|null $tw
- * @property string|null $pt
- * @property string|null $ig
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|UserSocials newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|UserSocials newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|UserSocials query()
- * @method static \Illuminate\Database\Eloquent\Builder|UserSocials whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserSocials whereFb($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserSocials whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserSocials whereIg($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserSocials wherePt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserSocials whereTw($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserSocials whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserSocials whereUserId($value)
- */
-	class UserSocials extends \Eloquent {}
 }
 
 namespace App\Models{

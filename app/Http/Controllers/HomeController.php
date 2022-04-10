@@ -12,8 +12,9 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Visitor;
 use App\Models\Setting;
+use Cookie;
 use Illuminate\Support\Facades\DB;
-class HomeController extends Controller
+class   HomeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -45,6 +46,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $cookie = cookie('subscribe','deneme cookie',60*24*30);
+        $cookie2 = cookie('subscribe2','deneme22',60*24*30);
+        Cookie::queue($cookie);
+        Cookie::queue($cookie2);
         return view('frontend.page.home');
     }
 

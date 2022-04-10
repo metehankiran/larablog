@@ -3,9 +3,12 @@
     <div class="widget-header-2 position-relative mb-30">
         <h5 class="mt-5 mb-30">Comments</h5>
     </div>
+    @if($comments->count() <1)
+    <p>No comments yet.</p>
+    @else
     @foreach ($comments->where('parent_id', null)->all() as $comment)
     <div class="comment-list wow fadeIn animated">
-        <div class="single-comment justify-content-between d-flex">
+        <div id="comment-id-{{ $comment->id }}" class="single-comment justify-content-between d-flex">
             <div class="user justify-content-between d-flex">
                 <div class="thumb">
                     <img src="{{ Storage::url('public/images/default-user-profile-image.png') }}" alt="">
@@ -17,7 +20,11 @@
                     <div class="d-flex justify-content-between">
                         <div class="d-flex align-items-center">
                             <h5>
-                                <a href="#">{{ $comment->name }}</a>
+                                    @if($comment->user_id != null)
+                                    <a class="text-primary" href="{{ route('author',$comment->user_id) }}">{{ $comment->name }}</a>
+                                    @else
+                                    {{ $comment->name }}
+                                    @endif
                             </h5>
                             <p class="date">{{ $comment->created_at }}</p>
                         </div>
@@ -42,7 +49,11 @@
                     <div class="d-flex justify-content-between">
                         <div class="d-flex align-items-center">
                             <h5>
-                                <a href="#">{{ $reply->name }}</a>
+                                @if($reply->user_id != null)
+                                <a class="text-primary" href="{{ route('author',$reply->user_id) }}">{{ $reply->name }}</a>
+                                @else
+                                {{ $reply->name }}
+                                @endif
                             </h5>
                             <p class="date">{{ $reply->created_at }}</p>
                         </div>
@@ -57,6 +68,7 @@
         @endforeach
     </div>
     @endforeach
+    @endif
 </div>
 <!--comment form-->
 <div class="comment-form wow fadeIn animated">
@@ -86,11 +98,6 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <input class="form-control" name="email" id="email" type="email" placeholder="Email">
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-group">
-                    <input class="form-control" name="website" id="website" type="text" placeholder="Website">
                 </div>
             </div>
         </div>

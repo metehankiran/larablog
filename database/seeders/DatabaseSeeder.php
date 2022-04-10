@@ -36,6 +36,9 @@ class DatabaseSeeder extends Seeder
             'meta_desc' => 'sdkfaskdfkasfkasdfkaskdfaskdfak',
             'footer_about'  => 'footer about',
             'user_about' => true,
+            'last_comments' => true,
+            'instagram' => true,
+            'most_popular' => true,
             'user_id' => 1
         ]);
     }
