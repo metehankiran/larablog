@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Post;
-use App\Models\Category;
+use Laravel\Scout\Searchable;
 
 class Category extends Model
 {
     use HasFactory;
+    use Searchable;
 
     protected $fillable = ['title', 'parent_id'];
+    protected $touches = ['posts'];
 
     public function posts()
     {

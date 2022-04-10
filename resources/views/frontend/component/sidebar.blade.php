@@ -130,16 +130,24 @@
                 <div class="row mb-20">
                     <div class="col-12 align-self-center main-search-form-cover m-auto">
                         <p class="text-center"><span class="search-text-bg">Search</span></p>
-                        <form action="#" class="search-header">
+                        <div class="search-header">
                             <div class="input-group w-100">
-                                <input type="text" class="form-control" placeholder="Search stories, places and people">
+                                <input type="text" id="query" class="form-control" name="query" placeholder="Search stories, places and people">
                                 <div class="input-group-append">
-                                    <button class="btn btn-search bg-white" type="submit">
+                                    <button id="searchButton" class="btn btn-search bg-white" type="submit">
                                         <i class="elegant-icon icon_search"></i>
                                     </button>
+                                    <script>
+                                        $('#searchButton').click(function() {
+                                            var query = $('#query').val();
+                                            if (query.length > 0) {
+                                                window.location.href = "{{ route('search') }}/"+query;
+                                            }
+                                        });
+                                    </script>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
                 <div class="row mt-80 text-center">

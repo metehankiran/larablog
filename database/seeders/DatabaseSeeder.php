@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
 use App\Models\Keyword;
+use App\Models\Post;
 use App\Models\Setting;
 use App\Models\User;
 class DatabaseSeeder extends Seeder
@@ -19,6 +20,16 @@ class DatabaseSeeder extends Seeder
         $fakePostCount = 50;
         \App\Models\Post::factory($fakePostCount)->create();
         
+        Post::create([
+            'title' => "php developer olcam",
+            'slug' => "java depeloder",
+            'description' => "python developer",
+            'category_id' => rand(1,5),
+            'author_id' => 1,
+            'content' => "sisharp developer",
+            'image' => 'public/images/default-image.jpg',
+        ]);
+
         $keywords = ['fake','keyword','for','hehe','technology','laravel','php','models','seeders','database','seeder','factory','eloquent','faker','lorem','ipsum','dolor','sit','amet','consectetur','adipiscing','elit','sed','do','eiusmod','tempor','incididunt','ut','labore','et','dolore','magna','aliqua','enim','ad','minim','veniam','quis','nostrud','exercitation','ullamco','laboris','nisi','ut','aliquip','ex','ea','commodo','consequat','duis','aute','irure','dolor','in','reprehenderit','in','voluptate','velit','esse','cillum','dolore','eu','fugiat','nulla','pariatur','excepteur','sint','occaecat','cupidatat','non','proident','sunt','culpa','qui','officia','deserunt','mollit','anim','id','est','laborum'];
 
         for($i=0; $i<$fakePostCount; $i++){

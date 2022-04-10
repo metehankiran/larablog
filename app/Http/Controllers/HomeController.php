@@ -89,7 +89,6 @@ class   HomeController extends Controller
                     $i++;
                 }
             }
-
         $suggestedPosts = array_unique($suggestedPosts);
         $suggestedPosts = collect($suggestedPosts);
         $suggestedPosts = $suggestedPosts->sortBy('similarity')->reverse();
@@ -97,5 +96,21 @@ class   HomeController extends Controller
         $rightMenu = view('frontend.component.suggested-post.suggested-post-right', ['suggestedPosts' => $suggestedPosts->forPage($request->page,$perPage)])->render();
         return response()->json(['html' => $view, 'rightMenu' => $rightMenu]); 
     }
+
+    public function search($query)
+    {
+        $count = Post::search($query)->get()->count();
+        return view('frontend.page.search', ['query' => $query, 'count' => $count]);
+    }
+
+    public function searchResult(Request $request)
+    {   
+        $result = Post::search($request['query'])->get();
+        $selectedPosts = collect($result)->forPage($request['page'],4);
+        $view = view('frontend.component.search-posts-each', ['result' => $selectedPosts])->render();
+        return response()->json(['html' => $view]);
+    }
+
+
 
 }

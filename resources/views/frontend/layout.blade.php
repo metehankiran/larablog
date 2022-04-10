@@ -17,6 +17,9 @@
 </head>
 
 <body>
+    <div class="preloader text-center" style="display:none">
+        <div class="circle"></div>
+    </div>
     @include('frontend.component.sidebar')
     <!-- Start Main content -->
     @yield('body')

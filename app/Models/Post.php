@@ -8,15 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Visitor;
-
+use Laravel\Scout\Searchable;
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
     protected $guard = [];
     protected $guarded = [];
     protected $fillable = [
         'title', 'slug', 'category_id', 'author_id', 'content', 'keywords',
     ];
+
+
+    public function searchableAs()
+    {
+        return 'posts_index';
+    }
 
     public function category()
     {
