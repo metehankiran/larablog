@@ -129,8 +129,9 @@
                 $('.ajax-load').show();
             },
             success: function(data){
-                if(data.html == " "){
+                if(data.html == ""){
                     $('.ajax-load').html("No more post to show");
+                    $('#load-posts').prop('disabled', true);
                     return;
                 }
                 $('.ajax-load').hide();
@@ -151,5 +152,4 @@
     });
     });
 </script>
-<!--container-->
 @endsection

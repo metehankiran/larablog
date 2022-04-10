@@ -8,7 +8,7 @@
                     </div>
                     <div class="textwidget">
                         <p>
-                            Start writing, no matter what. The water does not flow until the faucet is turned on.
+                            {{ $setting->meta_desc }}
                         </p>
                         <p><strong class="color-black">Address</strong><br>
                             {{ $setting->address }}
@@ -43,13 +43,9 @@
                         <h5 class="mt-5 mb-30">Tagcloud</h5>
                     </div>
                     <div class="tagcloud mt-50">
-                        <a class="tag-cloud-link" href="category.html">beautiful</a>
-                        <a class="tag-cloud-link" href="category.html">New York</a>
-                        <a class="tag-cloud-link" href="category.html">droll</a>
-                        <a class="tag-cloud-link" href="category.html">intimate</a>
-                        <a class="tag-cloud-link" href="category.html">loving</a>
-                        <a class="tag-cloud-link" href="category.html">travel</a>
-                        <a class="tag-cloud-link" href="category.html">fighting </a>
+                        @foreach ($setting->tags() as $tag)
+                        <a class="tag-cloud-link" href="category.html">{{ $tag }}</a>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -72,9 +68,9 @@
             @endif
         </div>
         <div class="footer-copy-right pt-30 mt-20 wow fadeInUp animated">
-            <p class="float-md-left font-small text-muted">© 2020, Stories - Personal Blog HTML Template </p>
+            <p class="float-md-left font-small text-muted">© {{ now()->year }}, {{ env('APP_NAME') }} </p>
             <p class="float-md-right font-small text-muted">
-                Design by <a href="../../../index.htm" target="_blank">AliThemes</a> | All rights reserved
+               Developed by <a href="https://www.github.com/metehankiran" target="_blank">Metehan KIRAN</a>
             </p>
         </div>
     </div>

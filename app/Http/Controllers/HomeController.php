@@ -70,7 +70,7 @@ class   HomeController extends Controller
         return view('frontend.page.author', ['posts'=>$posts, 'author' => $user]);
     }
 
-    public function suggestedPost(Request $request, $perPage = 2)
+    public function suggestedPost(Request $request, $perPage = 3)
     {
         $post = Post::find($request->post_id);
         $keywords = $post->keywords()->pluck('keyword');

@@ -13,4 +13,10 @@ class Setting extends Model
     {
         return $this->hasOne(User::class,'id','user_id');
     }
+
+    public function tags()
+    {
+        $tags = explode(',',$this->tags);
+        return $tags;
+    }
 }
