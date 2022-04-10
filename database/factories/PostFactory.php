@@ -21,7 +21,6 @@ class PostFactory extends Factory
             'description' => $this->faker->sentence(5),
             'category_id' => rand(1,5),
             'author_id' => 1,
-            'keywords' => 'test,keywords,test2,test3',
             'content' => $this->faker->paragraphs(5,true),
             'image' => 'public/images/default-image.jpg',
         ];

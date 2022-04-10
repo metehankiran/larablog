@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/style.css">
     <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/widgets.css">
     <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/responsive.css">
+    <script src="{{ asset('frontend/assets') }}/js/vendor/jquery-3.6.0.min.js"></script>
     @yield('css')
 </head>
 
@@ -29,7 +30,6 @@
     <div class="dark-mark"></div>
     <!-- Vendor JS-->
     <script src="{{ asset('frontend/assets') }}/js/vendor/modernizr-3.6.0.min.js"></script>
-    <script src="{{ asset('frontend/assets') }}/js/vendor/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('frontend/assets') }}/js/vendor/popper.min.js"></script>
     <script src="{{ asset('frontend/assets') }}/js/vendor/bootstrap.min.js"></script>
     <script src="{{ asset('frontend/assets') }}/js/vendor/jquery.slicknav.js"></script>

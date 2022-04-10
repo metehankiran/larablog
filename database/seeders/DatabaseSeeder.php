@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Category;
+use App\Models\Keyword;
 use App\Models\Setting;
 use App\Models\User;
 class DatabaseSeeder extends Seeder
@@ -15,9 +16,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        \App\Models\Post::factory(55)->create();
+        $fakePostCount = 50;
+        \App\Models\Post::factory($fakePostCount)->create();
+        
+        $keywords = ['fake','keyword','for','hehe','technology','laravel','php','models','seeders','database','seeder','factory','eloquent','faker','lorem','ipsum','dolor','sit','amet','consectetur','adipiscing','elit','sed','do','eiusmod','tempor','incididunt','ut','labore','et','dolore','magna','aliqua','enim','ad','minim','veniam','quis','nostrud','exercitation','ullamco','laboris','nisi','ut','aliquip','ex','ea','commodo','consequat','duis','aute','irure','dolor','in','reprehenderit','in','voluptate','velit','esse','cillum','dolore','eu','fugiat','nulla','pariatur','excepteur','sint','occaecat','cupidatat','non','proident','sunt','culpa','qui','officia','deserunt','mollit','anim','id','est','laborum'];
 
+        for($i=0; $i<$fakePostCount; $i++){
+            $randomNumber = rand(1,10);
+            for($j=0; $j<$randomNumber; $j++){
+                $keyword = new Keyword();
+                $keyword->post_id = $i+1;
+                $keyword->keyword = $keywords[rand(0,count($keywords)-1)];
+                $keyword->save();
+            }
+        }
+        
         User::create(['name' => 'Metehan KIRAN', 'slug' => 'metehan-kiran', 'email' => 'admin@test.com', 'password' => '$2y$10$Audig5MmgWEfOcfDnnKQfuuHk4rARygrjsc3SqUN/FJ6avXvhcBR6']);
 
         Category::create(['title' => 'Language','parent_id' => 0, 'slug' => 'language']);

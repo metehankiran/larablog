@@ -43,8 +43,8 @@
         <div class="entry-bottom mt-50 mb-30 wow fadeIn animated">
             <div class="tags">
                 <span>Tags: </span>
-                @foreach (explode(',', $post->keywords) as $tag)
-                <a href="category.html" rel="tag">{{ $tag }}</a>
+                @foreach ($post->keywords as $keyword)
+                <a href="category.html" rel="tag">{{ $keyword->keyword }}</a>
                 @endforeach
             </div>
         </div>
@@ -88,72 +88,14 @@
                 <div class="widget-header-2 position-relative mb-30">
                     <h5 class="mt-5 mb-30">YOU MIGHT BE INTERESTED IN</h5>
                 </div>
-                <div class="loop-list loop-list-style-1">
-                    <article class="hover-up-2 transition-normal wow fadeInUp  animated">
-                        <div class="row mb-40 list-style-2">
-                            <div class="col-md-4">
-                                <div class="post-thumb position-relative border-radius-5">
-                                    <div class="img-hover-slide border-radius-5 position-relative" style="background-image: url(assets/imgs/news/news-13.jpg)">
-                                        <a class="img-link" href="single.html"></a>
-                                    </div>
-                                    <ul class="social-share">
-                                        <li><a href="#"><i class="elegant-icon social_share"></i></a></li>
-                                        <li><a class="fb" href="#" title="Share on Facebook" target="_blank"><i class="elegant-icon social_facebook"></i></a></li>
-                                        <li><a class="tw" href="#" target="_blank" title="Tweet now"><i class="elegant-icon social_twitter"></i></a></li>
-                                        <li><a class="pt" href="#" target="_blank" title="Pin it"><i class="elegant-icon social_pinterest"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-8 align-self-center">
-                                <div class="post-content">
-                                    <div class="entry-meta meta-0 font-small mb-10">
-                                        <a href="category.html"><span class="post-cat text-primary">Food</span></a>
-                                    </div>
-                                    <h5 class="post-title font-weight-900 mb-20">
-                                        <a href="single.html">Helpful Tips for Working from Home as a Freelancer</a>
-                                        <span class="post-format-icon"><i class="elegant-icon icon_star_alt"></i></span>
-                                    </h5>
-                                    <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
-                                        <span class="post-on">7 August</span>
-                                        <span class="time-reading has-dot">11 mins read</span>
-                                        <span class="post-by has-dot">3k views</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="hover-up-2 transition-normal wow fadeInUp  animated">
-                        <div class="row mb-40 list-style-2">
-                            <div class="col-md-4">
-                                <div class="post-thumb position-relative border-radius-5">
-                                    <div class="img-hover-slide border-radius-5 position-relative" style="background-image: url(assets/imgs/news/news-4.jpg)">
-                                        <a class="img-link" href="single.html"></a>
-                                    </div>
-                                    <ul class="social-share">
-                                        <li><a href="#"><i class="elegant-icon social_share"></i></a></li>
-                                        <li><a class="fb" href="#" title="Share on Facebook" target="_blank"><i class="elegant-icon social_facebook"></i></a></li>
-                                        <li><a class="tw" href="#" target="_blank" title="Tweet now"><i class="elegant-icon social_twitter"></i></a></li>
-                                        <li><a class="pt" href="#" target="_blank" title="Pin it"><i class="elegant-icon social_pinterest"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-8 align-self-center">
-                                <div class="post-content">
-                                    <div class="entry-meta meta-0 font-small mb-10">
-                                        <a href="category.html"><span class="post-cat text-success">Cooking</span></a>
-                                    </div>
-                                    <h5 class="post-title font-weight-900 mb-20">
-                                        <a href="single.html">10 Easy Ways to Be Environmentally Conscious At Home</a>
-                                    </h5>
-                                    <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
-                                        <span class="post-on">27 Sep</span>
-                                        <span class="time-reading has-dot">10 mins read</span>
-                                        <span class="post-by has-dot">22k views</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
+                <div id="suggested-posts" class="loop-list loop-list-style-1">
+                    
+                </div>
+                <div class="text-center">
+                    <div class="ajax-load" style="display:none">
+                        <img src="{{ asset('frontend/assets/imgs/load.gif') }}">
+                    </div>
+                    <button class="btn btn-primary hover-up-2 transition-normal wow fadeInUp  animated" id="load-posts">More Load Posts</button>
                 </div>
             </div>
         </div>
@@ -164,44 +106,50 @@
                 <button class="single-more-articles-close"><i class="elegant-icon icon_close"></i></button>
             </div>
             <div class="post-block-list post-module-1 post-module-5">
-                <ul class="list-post">
-                    <li class="mb-30">
-                        <div class="d-flex hover-up-2 transition-normal">
-                            <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                                <a class="color-white" href="single.html">
-                                    <img src="assets/imgs/news/thumb-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="post-content media-body">
-                                <h6 class="post-title mb-15 text-limit-2-row font-medium"><a href="single.html">The Best Time to Travel to Cambodia</a></h6>
-                                <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
-                                    <span class="post-on">27 Jan</span>
-                                    <span class="post-by has-dot">13k views</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="mb-10">
-                        <div class="d-flex hover-up-2 transition-normal">
-                            <div class="post-thumb post-thumb-80 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
-                                <a class="color-white" href="single.html">
-                                    <img src="assets/imgs/news/thumb-2.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="post-content media-body">
-                                <h6 class="post-title mb-15 text-limit-2-row font-medium"><a href="single.html">20 Photos to Inspire You to Visit Cambodia</a></h6>
-                                <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
-                                    <span class="post-on">27 August</span>
-                                    <span class="post-by has-dot">14k views</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                <ul id="suggested-posts-right" class="list-post">
                 </ul>
             </div>
         </div>
         @include('frontend.component.comment.comments', ['comments' => $post->comments, 'post_id' => $post->id])
     </article>
 </div>
+<script>
+    var page = 1;
+    var first_load = true;
+    function loadPosts(page) {
+        $.ajax({
+            url: "{{ route('suggestedPost',$post->id) }}",
+            type: "POST",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                'page': page,
+                'post_id': {{ $post->id }}
+            },
+            beforeSend: function(){
+                $('.ajax-load').show();
+            },
+            success: function(data){
+                if(data.html == " "){
+                    $('.ajax-load').html("No more post to show");
+                    return;
+                }
+                $('.ajax-load').hide();
+                $('#suggested-posts').append(data.html);
+                if(first_load){
+                    $('#suggested-posts-right').append(data.rightMenu);
+                }
+                first_load = false;
+            }
+        });
+    }
+
+    $(document).ready(function(){
+        loadPosts(1);
+        $('#load-posts').click(function(){
+        loadPosts(page+1);
+        page++;
+    });
+    });
+</script>
 <!--container-->
 @endsection

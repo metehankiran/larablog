@@ -18,7 +18,6 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('description');
-            $table->text('keywords')->nullable();
             $table->integer('category_id');
             $table->integer('author_id');
             $table->boolean('featured')->default(0);

@@ -70,4 +70,32 @@ class   HomeController extends Controller
         return view('frontend.page.author', ['posts'=>$posts, 'author' => $user]);
     }
 
+    public function suggestedPost(Request $request, $perPage = 2)
+    {
+        $post = Post::find($request->post_id);
+        $keywords = $post->keywords()->pluck('keyword');
+        $posts = Post::get();
+        $suggestedPosts = array();
+        foreach($posts as $p){
+            $postKeywords = $p->keywords()->pluck('keyword');
+            $counter = 0;
+            $i = 0;
+            foreach($keywords as $keyword){
+                if(in_array($keyword,$postKeywords->toArray())){
+                    $counter++;
+                        array_push($suggestedPosts,$p);
+                        $p['similarity'] = $counter;
+                    }
+                    $i++;
+                }
+            }
+
+        $suggestedPosts = array_unique($suggestedPosts);
+        $suggestedPosts = collect($suggestedPosts);
+        $suggestedPosts = $suggestedPosts->sortBy('similarity')->reverse();
+        $view = view('frontend.component.suggested-post.suggested-post', ['suggestedPosts' => $suggestedPosts->forPage($request->page,$perPage)])->render();
+        $rightMenu = view('frontend.component.suggested-post.suggested-post-right', ['suggestedPosts' => $suggestedPosts->forPage($request->page,$perPage)])->render();
+        return response()->json(['html' => $view, 'rightMenu' => $rightMenu]); 
+    }
+
 }

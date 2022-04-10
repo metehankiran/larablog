@@ -13,6 +13,7 @@ class Post extends Model
 {
     use HasFactory;
     protected $guard = [];
+    protected $guarded = [];
     protected $fillable = [
         'title', 'slug', 'category_id', 'author_id', 'content', 'keywords',
     ];
@@ -34,5 +35,10 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function keywords()
+    {
+        return $this->hasMany(Keyword::class);
     }
 }

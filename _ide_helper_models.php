@@ -71,6 +71,17 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Keyword
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Keyword newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Keyword newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Keyword query()
+ */
+	class Keyword extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Photo
  *
  * @property int $id
