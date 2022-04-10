@@ -1,4 +1,4 @@
-@if ($viewCount > 0)
+@if ($viewCount->count() > 0)
 <div class="sidebar-widget widget-latest-posts mb-50 wow fadeInUp animated">
     <div class="widget-header-1 position-relative mb-30">
         <h5 class="mt-5 mb-30">Most popular</h5>
