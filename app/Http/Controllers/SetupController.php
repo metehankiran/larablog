@@ -18,7 +18,6 @@ class SetupController extends Controller
             $output = 'Invalid setup key'.'request:key:'.$request->setup_key.':env:'.env('SETUP_KEY');
             return response()->json(['output' => $output]);
         }
-        else{
             $command = $request->input('command');
             $command = strpos($command, 'php artisan ') !== false ? substr($command, 12) : $command;
             try{
@@ -28,7 +27,7 @@ class SetupController extends Controller
             catch(\Exception $e){
                 $output = $e->getMessage();
             }
-        }
+        
         return response()->json(['output' => $output]);
     }
 
@@ -43,8 +42,12 @@ class SetupController extends Controller
         
     }
 
-    public function setupDefaultSetting()
+    public function setupDefaultSetting(Request $request)
     {
+        if($request->setup_key != env('SETUP_KEY')){
+            $output = 'Invalid setup key'.'request:key:'.$request->setup_key.':env:'.env('SETUP_KEY');
+            return response()->json(['output' => $output]);
+        }
         Artisan::call('migrate:fresh --seed');
         return response()->json(['output' => 'First upload succesfully. ']);
     }
