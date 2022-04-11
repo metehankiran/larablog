@@ -6,7 +6,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SetupController;
+use App\Http\Controllers\test1controller;
+use App\Http\Controllers\test2controller;
 use App\Http\Controllers\TextSearchController;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Http\Request;
 
@@ -20,6 +24,12 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::prefix('setup-wizard')->group(function() {
+    Route::get('/', [SetupController::class, 'index'])->name('setup.index');
+    Route::post('/command-custom', [SetupController::class, 'customCommand'])->name('setup.command.custom');
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{category:slug}', [HomeController::class, 'category'])->name('category');
 Route::get('/post/{post:slug}', [HomeController::class, 'post'])->name('post')->middleware('visitor');

@@ -2,7 +2,7 @@
 @extends('frontend.layout')
 @section('body')
 <main>       
-    {{-- @include('frontend.component.slider')       --}}
+    {{-- @include('frontend.component.slider') --}}
     @include('frontend.component.featured-posts')
     @php
         $category = $randomCategories->take(1)->first();
@@ -12,6 +12,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="post-module-2">
+                        @if (!empty($category))
                         <div class="widget-header-1 position-relative mb-30  wow fadeInUp animated">
                             <h5 class="mt-5 mb-30"><a class="link" href="{{ route('category',$category) }}">{{ $category->title }}</a></h5>
                         </div>
@@ -49,15 +50,18 @@
                                 @endforeach
                             </div>
                         </div>
+                        @endif
                     </div>
                     @include('frontend.component.latest-posts')
                 </div>
                 <div class="col-lg-4">
                     <div class="widget-area">
+                        @empty(!$setting)
                             @if($setting->user_about) @include('frontend.component.about')@endif
                             @if($setting->most_popular) @include('frontend.component.most-popular')@endif
                             @if($setting->last_comments) @include('frontend.component.last-comments')@endif
                             @if($setting->instagram) @include('frontend.component.instagram')@endif
+                        @endempty
                     </div>
                 </div>
             </div>

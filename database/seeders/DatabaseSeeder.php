@@ -43,13 +43,11 @@ class DatabaseSeeder extends Seeder
         }
         
         User::create(['name' => 'Metehan KIRAN', 'slug' => 'metehan-kiran', 'email' => 'admin@test.com', 'password' => '$2y$10$Audig5MmgWEfOcfDnnKQfuuHk4rARygrjsc3SqUN/FJ6avXvhcBR6']);
-
         Category::create(['title' => 'Language','parent_id' => 0, 'slug' => 'language']);
         Category::create(['title' => 'Travel','parent_id' => 0, 'slug' => 'travel']);
         Category::create(['title' => 'PHP','parent_id' => 1, 'slug' => 'php']);
         Category::create(['title' => 'Java','parent_id' => 1, 'slug' => 'java']);
         Category::create(['title' => 'Go','parent_id' => 1, 'slug' => 'go-lang']);
-    
         Setting::create([
             'title' => 'Metehan Kıran - Kişisel Blog',
             'tags' => 'teknoloji,yazılım,php,laravel,web development',

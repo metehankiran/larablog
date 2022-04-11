@@ -1,6 +1,7 @@
 <div class="site-bottom pt-50 pb-50">
     <div class="container">
         <div class="row">
+            @empty(!$randomCategories)
             @foreach ($randomCategories->take(3) as $category)    
             <div class="col-lg-4 col-md-6">
                 <div class="sidebar-widget widget-latest-posts mb-30 wow fadeInUp animated">
@@ -32,6 +33,7 @@
                 </div>
             </div>
             @endforeach
+            @endempty
         </div>
         <div class="sidebar-widget widget-latest-posts mb-30 mt-20 wow fadeInUp animated">
             <div class="widget-header-2 position-relative mb-30">
