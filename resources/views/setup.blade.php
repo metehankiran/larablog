@@ -27,7 +27,7 @@
                   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       <p>Enter the <code>SETUP_KEY</code> to continue.</p>
-                      <input type="text" name="setup_key" class="form-control" placeholder="SETUP_KEY" value="L1f57en4AtYwtCWxeGCWHbZTBDFGoR8h">
+                      <input type="text" name="setup_key" class="form-control" placeholder="SETUP_KEY" value="">
                     </div>
                   </div>
                 </div>

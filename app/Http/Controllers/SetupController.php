@@ -50,9 +50,6 @@ class SetupController extends Controller
 
     public function setupDefaultSetting(Request $request)
     {
-        $request->validate([
-                'setup_key' => 'required'
-        ]);
         if($request->setup_key != env('SETUP_KEY')){
             $output = 'Invalid setup key.';
             return response()->json(['output' => $output]);
