@@ -32,6 +32,47 @@
                   </div>
                 </div>
                 <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingSetup">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSetup" aria-expanded="false" aria-controls="collapseSetup">
+                      First Setup
+                    </button>
+                  </h2>
+                  <div id="collapseSetup" class="accordion-collapse collapse" aria-labelledby="headingSetup" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="row">
+                          <div class="col">
+                            <button class="btn btn-primary" id="setup-default-settings">Setup Default Settings</button>
+                          </div>
+                          {{-- <div class="col">
+                            <div class="form-text">Please enter <code>website title</code></div>
+                            <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon1">website title</span>
+                              <input type="text" class="form-control" name="command" placeholder="namesurname/companyname">
+                            </div>
+                            <div class="form-text">Please enter <code>website tags</code></div>
+                            <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon1">website tags</span>
+                              <input type="text" class="form-control" name="command" placeholder="travel,technology,development,food,chess">
+                            </div>
+                          </div> --}}
+                      </div>
+                        <div>
+                          <div class="text-center" id="custom_loader" style="display:none">
+                            <div class="spinner-border text-info p-2 m-2" role="status">
+                              <span class="visually-hidden">Loading...</span>
+                            </div>
+                          </div>
+                          <div class="alert alert-info" role="alert" id="custom_info" style="display:none">
+                            <p>
+                              <p><code>Run time : <span id="custom_runtime"></span> second.</code></p>
+                              <p class="mt-2" id="output"></p>
+                            </p>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
                   <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                       Custom Command
@@ -81,6 +122,30 @@
             _token: '{{ csrf_token() }}',
             setup_key: $('input[name=setup_key]').val(),
             command: $('input[name=command]').val()
+          },
+          beforeSend: function(){
+            $('#custom_loader').show();
+            $('#custom_info').hide();
+          },
+          success: function(data){
+            console.log(data);
+            var time = performance.now() - this.startTime;
+            $('#custom_runtime').text(msToSecond(time));
+            $('#custom_loader').hide();
+            $('#custom_info').show();
+            $('#output').html(data.output);
+          }
+        });
+      });
+
+      $('#setup-default-settings').click(function(){
+        $.ajax({
+          startTime: performance.now(),
+          url: '{{ route('setup.default.settings') }}',
+          type: 'POST',
+          data: {
+            _token: '{{ csrf_token() }}',
+            setup_key: $('input[name=setup_key]').val(),
           },
           beforeSend: function(){
             $('#custom_loader').show();

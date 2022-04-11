@@ -31,4 +31,21 @@ class SetupController extends Controller
         }
         return response()->json(['output' => $output]);
     }
+
+    public function backupDownload($filename)
+    {
+        $file = storage_path('app/backup/'.$filename);
+        return response()->download($file);
+    }
+
+    public function firstSetup(Request $request)
+    {
+        
+    }
+
+    public function setupDefaultSetting()
+    {
+        Artisan::call('migrate:fresh --seed');
+        return response()->json(['output' => 'First upload succesfully. ']);
+    }
 }

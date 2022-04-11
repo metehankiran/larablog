@@ -28,6 +28,8 @@ use Illuminate\Http\Request;
 Route::prefix('setup-wizard')->group(function() {
     Route::get('/', [SetupController::class, 'index'])->name('setup.index');
     Route::post('/command-custom', [SetupController::class, 'customCommand'])->name('setup.command.custom');
+    Route::get('/backup-download/{filename}', [SetupController::class, 'backupDownload'])->name('backup.download');
+    Route::post('/setup/default/settings', [SetupController::class, 'setupDefaultSetting'])->name('setup.default.settings');
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
