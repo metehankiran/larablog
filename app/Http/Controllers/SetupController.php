@@ -15,7 +15,7 @@ class SetupController extends Controller
     public function customCommand(Request $request)
     {
         if($request->setup_key != env('SETUP_KEY')){
-            $output = 'Invalid setup key';
+            $output = 'Invalid setup key'.'request:key:'.$request->setup_key.':env:'.env('SETUP_KEY');
             return response()->json(['output' => $output]);
         }
         else{
