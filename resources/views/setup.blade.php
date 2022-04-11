@@ -57,15 +57,15 @@
                           </div> --}}
                       </div>
                         <div>
-                          <div class="text-center" id="custom_loader" style="display:none">
+                          <div class="text-center" id="first_setup_loader" style="display:none">
                             <div class="spinner-border text-info p-2 m-2" role="status">
                               <span class="visually-hidden">Loading...</span>
                             </div>
                           </div>
-                          <div class="alert alert-info" role="alert" id="custom_info" style="display:none">
+                          <div class="alert alert-info" role="alert" id="first_setup_info" style="display:none">
                             <p>
-                              <p><code>Run time : <span id="custom_runtime"></span> second.</code></p>
-                              <p class="mt-2" id="output"></p>
+                              <p><code>Run time : <span id="first_setup_runtime"></span> second.</code></p>
+                              <p class="mt-2" id="first_setup_output"></p>
                             </p>
                           </div>
                         </div>
@@ -148,16 +148,16 @@
             setup_key: $('input[name=setup_key]').val(),
           },
           beforeSend: function(){
-            $('#custom_loader').show();
-            $('#custom_info').hide();
+            $('#first_setup_loader').show();
+            $('#first_setup_info').hide();
           },
           success: function(data){
             console.log(data);
             var time = performance.now() - this.startTime;
-            $('#custom_runtime').text(msToSecond(time));
-            $('#custom_loader').hide();
-            $('#custom_info').show();
-            $('#output').html(data.output);
+            $('#first_setup_runtime').text(msToSecond(time));
+            $('#first_setup_loader').hide();
+            $('#first_setup_info').show();
+            $('#first_setup_output').html(data.output);
           }
         });
       });

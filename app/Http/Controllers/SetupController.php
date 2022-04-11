@@ -15,20 +15,26 @@ class SetupController extends Controller
     public function customCommand(Request $request)
     {
         if($request->setup_key != env('SETUP_KEY')){
-            $output = 'Invalid setup key'.'request:key:'.$request->setup_key.':env:'.env('SETUP_KEY');
+            $output = 'Invalid setup key.';
             return response()->json(['output' => $output]);
         }
-            $command = $request->input('command');
-            $command = strpos($command, 'php artisan ') !== false ? substr($command, 12) : $command;
+        if($request->command == ""){
+            $output = 'Please enter a command.';
+            return response()->json(['output' => $output]);
+        }
+        else{
             try{
+                $command = $request->input('command');
+                $command = strpos($command, 'php artisan ') !== false ? substr($command, 12) : $command;
                 Artisan::call($command);
                 $output = Artisan::output();
             }
             catch(\Exception $e){
                 $output = $e->getMessage();
             }
+        }
         
-        return response()->json(['output' => $output]);
+        return response()->json(['output' => $output],200);
     }
 
     public function backupDownload($filename)
@@ -44,11 +50,14 @@ class SetupController extends Controller
 
     public function setupDefaultSetting(Request $request)
     {
+        $request->validate([
+                'setup_key' => 'required'
+        ]);
         if($request->setup_key != env('SETUP_KEY')){
-            $output = 'Invalid setup key'.'request:key:'.$request->setup_key.':env:'.env('SETUP_KEY');
+            $output = 'Invalid setup key.';
             return response()->json(['output' => $output]);
         }
         Artisan::call('migrate:fresh --seed');
-        return response()->json(['output' => 'First upload succesfully. ']);
+        return response()->json(['output' => 'First upload succesfully. '],200);
     }
 }
